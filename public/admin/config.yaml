@@ -1,0 +1,84 @@
+# public/admin/config.yml
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+media_folder: "public/images" # Media files will be stored in the repo under public/images
+public_folder: "/images" # The src attribute for uploaded media will begin with /images
+
+collections:
+  - name: "churchInfo"
+    label: "Church Information"
+    file: "content/churchInfo.md"
+    fields:
+      - { label: "Church Name", name: "name", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Address", name: "address", widget: "string" }
+      - { label: "Phone", name: "phone", widget: "string" }
+      - { label: "Email", name: "email", widget: "string" }
+      - { label: "Logo", name: "logo", widget: "image", required: false }
+      - { label: "Google Maps Embed URL", name: "mapUrl", widget: "string", required: false }
+      - { label: "Google Calendar ID", name: "calendarId", widget: "string", required: false }
+      - label: "Service Schedule"
+        name: "services"
+        widget: "list"
+        fields:
+          - { label: "Day", name: "day", widget: "string" }
+          - { label: "Time", name: "time", widget: "string" }
+          - { label: "Service Name", name: "serviceName", widget: "string" }
+      - label: "Social Media"
+        name: "socialMedia"
+        widget: "object"
+        fields:
+          - { label: "Facebook", name: "facebook", widget: "string", required: false }
+          - { label: "Instagram", name: "instagram", widget: "string", required: false }
+          - { label: "YouTube", name: "youtube", widget: "string", required: false }
+
+  - name: "events"
+    label: "Events"
+    folder: "content/events"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "End Date", name: "endDate", widget: "datetime", required: false }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
+      - { label: "Description", name: "description", widget: "markdown" }
+      - { label: "Category", name: "category", widget: "select", options: ["liturgy", "specialService", "communityEvent", "fundraiser", "class"] }
+      - { label: "Google Calendar Event ID", name: "googleEventId", widget: "string", required: false }
+
+  - name: "announcements"
+    label: "Announcements"
+    folder: "content/announcements"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Content", name: "body", widget: "markdown" }
+
+  - name: "resources"
+    label: "Orthodox Resources"
+    folder: "content/resources"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Category", name: "category", widget: "select", options: ["introduction", "books", "videos", "websites", "faq"] }
+      - { label: "External Link", name: "externalLink", widget: "string", required: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Content", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Pages"
+    folder: "content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Content", name: "body", widget: "markdown" }
