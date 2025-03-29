@@ -10,22 +10,22 @@ export default function Home(): React.ReactNode {
   const announcements: Announcement[] = getRecentAnnouncements(3);
 
   return (
-    <main className="container mx-auto px-4 py-8">
+    <main className="container mx-auto px-4 py-8 bg-[#F5F2ED]"> {/* Warm off-white background */}
       {/* Hero Section */}
-      <section className="bg-blue-50 rounded-lg p-8 mb-12 relative overflow-hidden">
+      <section className="bg-[#E8DED1] rounded-lg p-8 mb-12 relative overflow-hidden border border-[#8B7355]"> {/* Light brown with darker border */}
         <div className="max-w-2xl relative z-10">
-          <h1 className="text-4xl font-bold mb-4">{churchInfo.name || 'Welcome to Our Orthodox Church'}</h1>
-          <p className="text-xl mb-6">{churchInfo.description || 'A place of worship, community, and Orthodox faith'}</p>
+          <h1 className="text-4xl font-bold mb-4 text-[#2C1810]">St. John of the Ladder Orthodox Church</h1> {/* Dark brown text */}
+          <p className="text-xl mb-6 text-[#4A3728]">{churchInfo.description || 'A place of worship, community, and Orthodox faith'}</p>
           <div className="flex flex-wrap gap-4">
             <Link 
               href="/about" 
-              className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
+              className="bg-[#8B7355] text-white px-6 py-2 rounded-md hover:bg-[#6B573D] transition"
             >
               About Us
             </Link>
             <Link 
               href="/contact" 
-              className="bg-white text-blue-600 px-6 py-2 rounded-md border border-blue-600 hover:bg-blue-50 transition"
+              className="bg-[#F5F2ED] text-[#8B7355] px-6 py-2 rounded-md border border-[#8B7355] hover:bg-[#E8DED1] transition"
             >
               Find Us
             </Link>
@@ -35,8 +35,8 @@ export default function Home(): React.ReactNode {
 
       {/* Services Schedule */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Service Schedule</h2>
-        <div className="bg-white rounded-lg shadow p-6">
+        <h2 className="text-2xl font-bold mb-4 text-[#2C1810]">Service Schedule</h2>
+        <div className="bg-white rounded-lg shadow-md p-6 border border-[#E8DED1]">
           {churchInfo.services && churchInfo.services.length > 0 ? (
             <ul className="divide-y">
               {churchInfo.services.map((service, index) => (
@@ -55,8 +55,8 @@ export default function Home(): React.ReactNode {
       {/* Upcoming Events */}
       <section className="mb-12">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold">Upcoming Events</h2>
-          <Link href="/events" className="text-blue-600 hover:underline">
+          <h2 className="text-2xl font-bold text-[#2C1810]">Upcoming Events</h2>
+          <Link href="/events" className="text-[#8B7355] hover:text-[#6B573D] hover:underline">
             View All Events
           </Link>
         </div>
@@ -99,13 +99,13 @@ export default function Home(): React.ReactNode {
       {/* Latest Announcements */}
       <section className="mb-12">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold">Latest Announcements</h2>
-          <Link href="/announcements" className="text-blue-600 hover:underline">
+          <h2 className="text-2xl font-bold text-[#2C1810]">Latest Announcements</h2>
+          <Link href="/announcements" className="text-[#8B7355] hover:text-[#6B573D] hover:underline">
             View All
           </Link>
         </div>
         
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow-md p-6 border border-[#E8DED1]">
           {announcements.length > 0 ? (
             <ul className="divide-y">
               {announcements.map((announcement) => (
@@ -134,8 +134,8 @@ export default function Home(): React.ReactNode {
 
       {/* Find Us */}
       <section>
-        <h2 className="text-2xl font-bold mb-4">Find Us</h2>
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <h2 className="text-2xl font-bold mb-4 text-[#2C1810]">Find Us</h2>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden border border-[#E8DED1]">
           {churchInfo.mapUrl ? (
             <div className="aspect-video w-full">
               <iframe 
@@ -154,13 +154,13 @@ export default function Home(): React.ReactNode {
             </div>
           )}
           <div className="p-6">
-            <h3 className="font-semibold text-lg mb-2">Our Location</h3>
-            <p className="mb-2">{churchInfo.address || 'Church address'}</p>
-            {churchInfo.phone && <p className="mb-2">Phone: {churchInfo.phone}</p>}
-            {churchInfo.email && <p className="mb-2">Email: {churchInfo.email}</p>}
+            <h3 className="font-semibold text-lg mb-2 text-[#2C1810]">Our Location</h3>
+            <p className="mb-2 text-[#4A3728]">{churchInfo.address || 'Church address'}</p>
+            {churchInfo.phone && <p className="mb-2 text-[#4A3728]">Phone: {churchInfo.phone}</p>}
+            {churchInfo.email && <p className="mb-2 text-[#4A3728]">Email: {churchInfo.email}</p>}
             <Link 
               href="/contact" 
-              className="inline-block mt-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+              className="inline-block mt-2 bg-[#8B7355] text-white px-4 py-2 rounded-md hover:bg-[#6B573D] transition"
             >
               Contact Us
             </Link>
