@@ -4,35 +4,29 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
-import type { ChurchInfo, Event, Announcement } from '../types';
+import type { ChurchInfo, Event, Announcement, MarkdownContent } from '../types';
 import { Compatible } from 'vfile';
 
 const contentDirectory = path.join(process.cwd(), 'content');
 
+const getMarkdownContent = (filename: string): MarkdownContent => {
+  const fullPath = path.join(contentDirectory, filename);
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const { data, content } = matter(fileContents);
+  return { data, content };
+};
+
 export function getChurchInfo(): ChurchInfo {
-  const filePath = path.join(contentDirectory, 'churchInfo.md');
-  
-  // Return default values if file doesn't exist yet
-  if (!fs.existsSync(filePath)) {
-    return {
-      name: 'Orthodox Church',
-      description: 'Welcome to our church',
-      address: '123 Main St',
-      services: []
-    };
-  }
-  
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  const { data } = matter(fileContents);
+  const { data } = getMarkdownContent('churchInfo.md');
   return {
-    name: data.name || 'Orthodox Church',
-    description: data.description || 'Welcome to our church',
-    services: data.services || [],
-    address: data.address || '123 Main St',
-    phone: data.phone || '',
-    email: data.email || '',
-    mapUrl: data.mapUrl || ''
-  } as ChurchInfo;
+    name: String(data.name || ''),
+    description: String(data.description || ''),
+    services: Array.isArray(data.services) ? data.services : [],
+    mapUrl: String(data.mapUrl || ''),
+    address: String(data.address || ''),
+    phone: String(data.phone || ''),
+    email: String(data.email || '')
+  };
 }
 
 export function getAllEvents() {

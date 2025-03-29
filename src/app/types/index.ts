@@ -28,3 +28,10 @@ export interface Announcement {
   date: string;
   content: string;
 }
+
+export interface MarkdownContent {
+  data: {
+    [key: string]: string | number | boolean;
+  };
+  content: string;
+}
