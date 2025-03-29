@@ -1,13 +1,13 @@
 // app/page.js
 import Image from 'next/image';
 import Link from 'next/link';
+import type { ChurchInfo, Event, Announcement } from './types';
 import { getChurchInfo, getUpcomingEvents, getRecentAnnouncements } from './lib/markdown';
-import { ChurchInfo, Event, Announcement } from './types';
 
-export default function Home() {
-  const churchInfo = getChurchInfo();
-  const events = getUpcomingEvents(3);
-  const announcements = getRecentAnnouncements(3);
+export default function Home(): React.ReactNode {
+  const churchInfo: ChurchInfo = getChurchInfo();
+  const events: Event[] = getUpcomingEvents(3);
+  const announcements: Announcement[] = getRecentAnnouncements(3);
 
   return (
     <main className="container mx-auto px-4 py-8">
@@ -143,7 +143,7 @@ export default function Home() {
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
-                allowFullScreen="" 
+                 
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>

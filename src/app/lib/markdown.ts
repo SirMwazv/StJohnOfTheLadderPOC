@@ -4,7 +4,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
-import { ChurchInfo, Event, Announcement } from '../types';
+import type { ChurchInfo, Event, Announcement } from '../types';
 import { Compatible } from 'vfile';
 
 const contentDirectory = path.join(process.cwd(), 'content');
