@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getChurchInfo, getUpcomingEvents, getRecentAnnouncements } from './lib/markdown';
+import { ChurchInfo, Event, Announcement } from './types';
 
 export default function Home() {
   const churchInfo = getChurchInfo();
